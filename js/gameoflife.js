@@ -15,7 +15,21 @@ const printCell = (cell, state) => {
   return contains.call(state, cell) ? '\u25A3' : '\u25A2'; 
 };
 
-const corners = (state = []) => {};
+const corners = (state = []) => {
+  if (state.length === 0) { 
+    return { 
+      topRight: [0, 0], 
+      bottomLeft: [0, 0] 
+    } 
+  } 
+  
+  const xs = state.map(([x, _]) => x); //return an array of all the x coordinates in the state 
+  const ys = state.map(([_, y]) => y); //return an array of all the y coordinates in the state 
+  return { 
+    topRight:[Math.max(...xs), Math.max(...ys)], 
+    bottomLeft: [Math.min(...xs), Math.min(...ys)] 
+  }
+};
 
 const printCells = (state) => {};
 
